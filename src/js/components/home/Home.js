@@ -10,7 +10,7 @@ class Home extends Component {
         return (
             <div className="container text-center">
                 <div className="mx-auto videoContainer">
-                    <iframe title="Video" width="1920" height="1080" src="https://www.youtube.com/embed/5I1v7aXYitI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe title="Video" width="1920" height="1080" src="https://www.youtube.com/embed/FYJsXp-HwwU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
                 <a href="./login" className="btn btn-primary mt-1 mb-1">Log in</a> &nbsp; &nbsp;
             <a href="./signup" className="btn btn-primary mt-1 mb-1">Sign up</a>
