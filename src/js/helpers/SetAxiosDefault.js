@@ -1,7 +1,10 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const setBaseUrl= () => {
-    axios.defaults.baseURL = 'https://break-out-server.herokuapp.com'; 
+    axios.defaults.baseURL = process.env.BASE_URL; 
     return true;
 }
 
