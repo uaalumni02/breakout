@@ -28,7 +28,7 @@ class Header extends Component {
             })
     }
 
-    doLogout() {
+    Logout() {
         localStorage.removeItem('token');
         window.location.href = '../'
     }
@@ -61,6 +61,9 @@ class Header extends Component {
                                             My Profile
                                         </a>
 
+                                        <a className="nav-item nav-link link-1" onClick={ (event) => this.Logout() }>
+                                            Logout
+                                        </a>
 
                                     </div>
                                 </div> :
