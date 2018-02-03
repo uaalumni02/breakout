@@ -1,0 +1,125 @@
+/* https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c */
+/* this file contains styles for the navbar component */
+
+html, body {
+  background: #011627;
+}
+
+/* override bootstrap button styles */
+.btn {
+  padding: 0.3em 1em;
+  border: none;
+  border-radius: 0.1rem;
+  color: #FDFFFC;
+  background: transparent;
+  text-transform: uppercase;
+  outline-color: transparent;
+}
+
+.btn:hover {
+  background: transparent;
+}
+
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.btn-primary {
+  border: 2px solid #E71D36;
+  background-color: #E71D36;
+  color: #FDFFFC;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  border-color: #FDFFFC;
+  color: #FDFFFC;
+  transition: background-color 0.5s;
+}
+
+.btn-secondary {
+  border: 2px solid #2EC4B6;
+  background-color: #2EC4B6;
+  color: #FDFFFC;
+}
+
+.btn-secondary:hover {
+  background: transparent;
+  border-color: #FDFFFC;
+  color: #FDFFFC;
+  transition: background-color 0.5s;
+}
+
+.btn-tertiary {
+  background: #011627;
+}
+
+.btn-tertiary:hover {
+  background: #2EC4B6
+}
+
+.videoContainer {
+  width: 80vw;
+  height: 80vh;
+}
+
+iframe {
+  width: 90%;
+  height: 90%; 
+}
+
+/* navbar styles */
+.navbar-brand, .nav-item.nav-link {
+  color: #2EC4B6 !important;
+}
+
+.navbar-brand:hover, .nav-item.nav-link:hover {
+  color: #E71D36 !important;
+}
+
+.navbar-toggler {
+  background: #2EC4B6 !important;
+  border-color: unset;
+  outline: none !important;
+}
+
+/* style for submit media modal */
+.modal-footer .btn-secondary:hover {
+  background: #E71D36;
+}
+
+.modal-header h5 {
+  font-weight: 200;
+}
+
+
+.profile h3 {
+  color: #FDFFFC;
+  font-weight: 200;
+}
+
+.profile-box {
+  background: #FDFFFC;
+  border-radius: 8px;
+  padding: 2rem;  
+}
+
+.profile-box p {
+  font-weight: 200;
+}
+
+.media-detail h5 {
+  font-weight: 200;
+}
+
+.media-detail ul {
+  list-style-type: none;
+  text-align: left;
+  padding-left: 0;
+}
+
+.media-detail ul li a {
+  text-decoration: none;
+  color: #011627;
+}

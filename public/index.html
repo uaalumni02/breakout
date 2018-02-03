@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <title>HOME</title>
+  <style>
+    /* https://coolors.co/011627-fdfffc-2ec4b6-e71d36-ff9f1c */
+
+    /* this file contains styles for the navbar component */
+
+    html,
+    body {
+      background: #011627;
+    }
+
+    /* override bootstrap button styles */
+
+    .btn {
+      padding: 0.3em 1em;
+      border: none;
+      border-radius: 0.1rem;
+      color: #FDFFFC;
+      background: transparent;
+      text-transform: uppercase;
+      outline-color: transparent;
+    }
+
+    .btn:hover {
+      background: transparent;
+    }
+
+    .btn:focus,
+    .btn:active {
+      outline: none !important;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      border: 2px solid #E71D36;
+      background-color: #E71D36;
+      color: #FDFFFC;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      border-color: #FDFFFC;
+      color: #FDFFFC;
+      transition: background-color 0.5s;
+    }
+
+    .btn-secondary {
+      border: 2px solid #2EC4B6;
+      background-color: #2EC4B6;
+      color: #FDFFFC;
+    }
+
+    .btn-secondary:hover {
+      background: transparent;
+      border-color: #FDFFFC;
+      color: #FDFFFC;
+      transition: background-color 0.5s;
+    }
+
+    .btn-tertiary {
+      background: #011627;
+    }
+
+    .btn-tertiary:hover {
+      background: #2EC4B6
+    }
+
+    .videoContainer {
+      width: 80vw;
+      height: 80vh;
+    }
+
+    .audioContainer {
+      width: 80vw;
+    }
+
+    iframe {
+      width: 90%;
+      height: 90%;
+    }
+
+    /* navbar styles */
+
+    .navbar-brand,
+    .nav-item.nav-link {
+      color: #2EC4B6 !important;
+    }
+
+    .navbar-brand:hover,
+    .nav-item.nav-link:hover {
+      color: #E71D36 !important;
+    }
+
+    .navbar-toggler {
+      background: #2EC4B6 !important;
+      border-color: unset;
+      outline: none !important;
+    }
+
+    /* style for submit media modal */
+
+    .modal-footer .btn-secondary:hover {
+      background: #E71D36;
+    }
+
+    .modal-header h5 {
+      font-weight: 200;
+    }
+
+    /* styles here are used for both sign up and sign in page */
+
+    .auth-box {
+      background-color: #FDFFFC;
+      height: 25rem;
+      border-radius: 8px;
+      margin-top: 10rem;
+      box-shadow: 1px 1px 6px #E9ECEF;
+    }
+
+    @media (min-width: 768px) {
+      .auth-box {
+        margin: 0 auto;
+        margin-top: 9rem;
+      }
+
+      /* sign up page style */
+      .auth-box.sign-up {
+        margin-top: 6rem;
+      }
+    }
+
+    .auth-box h3 {
+      font-size: 24px;
+      font-weight: 200;
+      line-height: 1.1;
+      color: #011627;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=password],
+    input[type=url] {
+      font-weight: 200 !important;
+    }
+
+    .auth-box-footer {
+      width: 100%;
+      background: whitesmoke;
+      height: 4rem;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #ececec;
+      font-weight: 200;
+      text-decoration: none;
+      color: #011627;
+    }
+
+    .auth-box-footer:hover {
+      text-decoration: none;
+      color: #011627;
+    }
+
+    .auth-box-footer span {
+      text-decoration: none;
+      color: #E71D36;
+    }
+
+
+    /* sign up style */
+
+    .auth-box.sign-up {
+      height: 31rem;
+    }
+
+    /* media list */
+
+    .media-list,
+    .media-list:hover {
+      text-decoration: none;
+      color: #011627;
+    }
+
+
+    .media-container {
+      width: 60vw !important;
+      height: 60vh !important;
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .media-audio-container {
+      width: 60vw !important;
+      height: 20vh !important;
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    @media (max-width: 768px) {
+      .media-container {
+        width: unset !important;
+        height: unset !important;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .rating {
+      color: #FDFFFC;
+    }
+
+    .review-box {
+      box-shadow: 0 0px 10px rgba(243, 243, 243, 0.2);
+      box-sizing: border-box;
+      padding: 0;
+    }
+
+    #video-review {
+      width: 100%;
+      padding: 1rem;
+      font-weight: 200;
+      border: 0;
+    }
+
+    .review__section {
+      background: #FDFFFC;
+      width: 100%;
+      height: 3rem;
+      position: absolute;
+      bottom: 0;
+      border-top: 1px solid #ECECEC;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .review-btn {
+      line-height: 2.4em;
+    }
+
+    .review__stars {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      color: #FDFFFC;
+    }
+
+    .review__stars input {
+      display: none;
+    }
+
+    .review__stars input:checked~label {
+      color: #E71D36;
+    }
+
+    .review__stars input+label {
+      font-size: 0;
+    }
+
+    .review__stars input+label::before {
+      font-size: 1.5rem;
+      content: "★";
+    }
+
+    .review__stars input+label[for="star-5"] {
+      order: 5
+    }
+
+    .review__stars input+label[for="star-4"] {
+      order: 4
+    }
+
+    .review__stars input+label[for="star-3"] {
+      order: 3
+    }
+
+    .review__stars input+label[for="star-2"] {
+      order: 2
+    }
+
+    .review__stars input+label[for="star-1"] {
+      order: 1
+    }
+
+    .review__stars input+label:hover,
+    .review__stars input+label:hover~label {
+      color: #E71D36;
+    }
+
+    .review-comments {
+      width: 100%;
+      height: 40vh;
+      padding: 0;
+    }
+
+    .review-comments h3 {
+      color: #FDFFFC;
+      font-weight: 200;
+    }
+
+    ul.comment-list {
+      list-style-type: none;
+      text-align: left;
+      padding: 0;
+    }
+
+    .comment-list li {
+      padding: 0.6rem 0.5rem;
+      background: #FDFFFC;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #2EC4B6;
+      border-right: 4px solid #2EC4B6;
+      border-radius: 4px;
+    }
+
+    .media-container iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-author-div {
+      top: -0.3rem;
+      background: #ECECEC;
+      height: 5rem;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-author-div span {
+      font-weight: 200;
+    }
+
+
+    .black-text {
+      color: #333 !important;
+    }
+
+    .profile-about {
+      margin: 0 auto;
+      float: none;
+    }
+
+    .img-avatar {
+      width: 50%;
+      height: 50%;
+    }
+
+
+    @import url(//fonts.googleapis.com/css?family=Raleway);
+    body {
+      margin: 0px;
+    }
+
+    nav {
+      margin-top: 0px;
+      padding: 0px;
+      text-align: center;
+      font-family: Raleway;
+      width: 90vw;
+      padding-left: 0%;
+      margin-right: 5px;
+    }
+
+    #nav-1 {
+      background: #3fa46a;
+    }
+
+    #nav-2 {
+      background: #5175C0;
+    }
+
+    #nav-3 {
+      background: #EEA200;
+    }
+
+    .link-1 {
+      transition: 0.3s ease;
+      color: #ffffff;
+      font-size: 20px;
+      text-decoration: none;
+      border-bottom: 2px solid #3fa46a;
+      padding: 10px 0;
+      margin: 0 10px;
+    }
+
+    .link-1:hover {
+      border-top: 4px solid #ffffff;
+      border-bottom: 4px solid #ffffff;
+      padding: 6px 0;
+    }
+
+    .link-2 {
+      transition: 0.6s;
+      color: #ffffff;
+      font-size: 20px;
+      text-decoration: none;
+      border-right: 2px dotted transparent;
+      padding: 30px 8px 0 10px;
+      margin: 0 10px;
+    }
+
+    .link-2:hover {
+      border-right: 2px dotted #ffffff;
+      padding-bottom: 24px;
+    }
+
+    .link-3 {
+      transition: 0.4s;
+      color: #ffffff;
+      font-size: 20px;
+      text-decoration: none;
+      padding: 0 10px;
+      margin: 0 10px;
+    }
+
+    .link-3:hover {
+      background-color: #ffffff;
+      color: #EEA200;
+      padding: 24px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
