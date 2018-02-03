@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { addRating, getMedia } from '../../actions/Actions'
+import { addRating, getMedia, addComment } from '../../actions/Actions'
 import { isLoggedIn } from '../../helpers/isLoggedIn';
 import { format } from '../../helpers/DateTime';
+import { getTokenData } from '../../helpers/isLoggedIn';
+import { calculateRating, calculateMediaRating } from '../../helpers/CalculateRating'
+import { UserAlreadyRated } from '../../helpers/UserAlreadyRated';
 
 
 class Media extends Component {
@@ -12,6 +15,11 @@ class Media extends Component {
         super(props);
         this.media_id = props.match.params.media_id;
         this.props.getMedia(this.media_id);
+
+        this.state = {
+            text: '',
+            userTokenData: getTokenData()
+        }
     }
 
     rateMedia(event, value) {
@@ -21,8 +29,26 @@ class Media extends Component {
         this.props.addRating(this.media_id, { media_id, score })
     }
 
+
+    handleInputChange(event) {
+        this.setState({
+            text: event.target.value,
+        })
+    }
+
+    handleSubmitReview() {
+        const text = this.state.text;
+        const media_id = this.props.match.params.media_id;
+        const firstname = this.state.userTokenData.firstname;
+        const username = this.state.userTokenData.username;
+        const requestBody = { text, media_id, username, firstname };
+
+        this.props.addComment(media_id, requestBody);
+    }
+
     render() {
         const { media, comments, ratings } = this.props.media;
+        const rating_score = calculateMediaRating(ratings);
 
         const mediaData = media ? media : {};
         const allComments = comments ? comments.map((comment, index) => {
@@ -49,7 +75,7 @@ class Media extends Component {
                 </div>
                 :
                 <div className="mx-auto media-audio-container">
-                <iframe scrolling="no" frameborder="no" src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${mediaData.link}&amp;color=0066cc`}></iframe>
+                <iframe scrolling="no" frameBorder="no" src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${mediaData.link}&amp;color=0066cc`}></iframe>
                     <div className="position-relative audio-author-div">
                         <span> 
                             <h3 className="text-white"> { mediaData.title } </h3> <br />
@@ -58,27 +84,46 @@ class Media extends Component {
                     </div>
                 </div>
                 }
+
+                { 
+
+                    !UserAlreadyRated(ratings, this.state.userTokenData.username) ?
+                
                 <div className="container text-center">
                     <div className="review__stars">
-                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 1) } id="star-5" required />
+                        <input type="radio" name="rating" selected onClick={(event) => this.rateMedia(event, 5) } id="star-5" required />
                         <label htmlFor="star-5"></label>
-                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 2) } id="star-4" required />
+                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 4) } id="star-4" required />
                         <label htmlFor="star-4"></label>
                         <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 3) }  id="star-3" required />
                         <label htmlFor="star-3"></label>
-                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 4) }  id="star-2" required />
+                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 2) }  id="star-2" required />
                         <label htmlFor="star-2"></label>
-                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 5) }  id="star-1" required />
+                        <input type="radio" name="rating" onClick={(event) => this.rateMedia(event, 1) }  id="star-1" required />
                         <label htmlFor="star-1"></label>
                     </div>
-                </div>
+                </div> : null
+
+                }
+
+                { 
+                    rating_score == 0 ?
+                        <span className="text-white"> No Ratings yet </span> :
+                        <span className="text-white"> Rated { rating_score } / 5 </span>
+
+                }
 
 
                 <div className="review-box col-12 col-md-8 mx-auto position-relative mt-5">
-                    <textarea name="" id="video-review" cols="30" rows="10" placeholder="Leave a review"></textarea>
+    
+                    <textarea name="" id="video-review" cols="30" rows="10" placeholder="Leave a review" 
+                        onChange={ (event) => this.handleInputChange(event) }
+                    ></textarea>
                     <div className="review__section">
                         <div className="col-12 p-0">
-                            <button className="btn btn-tertiary btn-block review-btn">Submit Review</button>
+                            <button className="btn btn-tertiary btn-block review-btn"
+                                onClick={ (event) => this.handleSubmitReview()}
+                            >Submit Review</button>
                         </div>
                     </div>
                 </div>
@@ -104,4 +149,4 @@ const mapStateToProps = (state) => {
     }
 }
 // const map
-export default connect(mapStateToProps, { getMedia, addRating })(Media);
+export default connect(mapStateToProps, { getMedia, addRating, addComment })(Media);

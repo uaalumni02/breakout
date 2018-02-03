@@ -42,11 +42,16 @@ class Profile extends Component {
 
 
     render() {
-        console.log(this.props)
+        let allMediaTabs;
+        let allUserComments;
+        let mediaData = this.props.media;
+        let commentData = this.props.comments;
 
-        const allMediaTabs = this.props.media.length ? this.props.media.map((media, index) => {
+        console.log(commentData)
+        if(mediaData && mediaData.length) {
+        allMediaTabs = mediaData.map((media, index) => {
             return (
-                <div>
+                <div key={index}>
                     <a href={`../media/${media.media_id}`}
                         className="list-group-item d-flex justify-content-between text-success">
                         <i className="ion ion-headphone"> &nbsp; { media.title } </i>                        
@@ -54,20 +59,23 @@ class Profile extends Component {
 
                 </div>
             )
-        }) : 'User has no media'
+        })
+    }
 
-        const allUserComments = this.props.comments.length ? this.props.comments.map((media, index) => {
+
+    if(commentData && commentData.length) {
+        allUserComments = commentData.map((comment, index) => {
             console.log(allUserComments)
             return (
-                <div>
-                    <a href={`../media/${media.media_id}`}
+                <div key={ index }>
+                    <a href={`../media/${comment.media_id}`}
                         className="list-group-item d-flex justify-content-between text-success">
-                            <i className="ion ion-headphone"> &nbsp; { media.title } </i>                        
+                            <i className="ion ion-headphone"> &nbsp; { comment.text } </i>                        
                     </a>
                 </div>
             );
-        }) : 'No Comments yet'
-
+        })
+    }
         return (
             <div className="container">
                 {
@@ -155,7 +163,7 @@ class Profile extends Component {
                                                     </div>
                                                     <select name="type" required className="custom-select custom-select-sm" onChange={ (event) => this.handleInputChange(event) } >
                                                         <option defaultValue value='youtube'>YouTube</option>
-                                                        <option value="sc">SoundCloud</option>
+                                                        <option value="sc">Sound Cloud</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -192,7 +200,7 @@ class Profile extends Component {
                                             <li className="nav-item">
                                                 <a className="nav-link text-success" data-toggle="tab" href="#reviewed" role="tab">
                                                 
-                                                <i className="ion ion-edit"> &nbsp;  Reviewed Songs </i>
+                                                <i className="ion ion-chatbubble"> &nbsp;  My Reviews </i>
                                                 </a>
                                             </li>
                                         </ul>
@@ -201,7 +209,7 @@ class Profile extends Component {
 
                                         <div className="tab-content">
 
-                                            {this.props.media.length ?
+                                            {this.props.media ?
 
 
                                                 <div className="tab-pane active" id="shared" role="tabpanel">
@@ -238,7 +246,7 @@ const mapStateToProps = (state) => {
     return {
         user: state.Profile.user,
         media: state.Profile.media,
-        comments: state.Profile.media
+        comments: state.Profile.comments
     }
 }
 // const map

@@ -28,6 +28,10 @@ class Header extends Component {
             })
     }
 
+    doLogout() {
+        localStorage.removeItem('token');
+        window.location.href = '../'
+    }
 
     render() {
         return (
@@ -55,7 +59,9 @@ class Header extends Component {
                                     </a>
                                         <a className="nav-item nav-link link-1" href={`../user/${this.state.tokenData.username}`}>
                                             My Profile
-                            </a>
+                                        </a>
+
+
                                     </div>
                                 </div> :
                                 <div className="collapse navbar-collapse" id="navbarToggle">

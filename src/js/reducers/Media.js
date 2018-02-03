@@ -18,7 +18,14 @@ const AllMedia = (state = intialState, action) => {
 const Media = (state = intialState, action) => {
     switch(action.type) {
         case Type.SET_MEDIA:
+        console.log(action.data);
             return Object.assign({}, state, { media: action.data });
+        
+        case 'UPDATE_COMMENT':
+            console.log(action.data.data.comments);
+            let ui = action.data.data.comments;
+            state.media.comments.push(ui[ui.length-1]);
+            return state;
         default:
             return state
     }

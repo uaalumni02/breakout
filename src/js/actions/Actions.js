@@ -85,10 +85,14 @@ const getMyProfile = () => (dispatch) => {
 }
 
 const addComment = (mediaId, requestBody) => (dispatch) => {
-  const endPoint = `${PATH.MEDIA}/comment/${mediaId}`;
+  const endPoint = `api/comment/${mediaId}`;
   return axios.post(endPoint, requestBody)
   .then((res) => {
-    return dispatch({ type: TYPE.SET_MEDIA, data: res.data });
+    dispatch({ type: TYPE.SET_MEDIA, data: res.data });
+    // return dispatch({ type: "UPDATE_COMMENT", data: res.data });
+    const mediaPath = `../media/${mediaId}`;
+    window.location.href = mediaPath;
+
   })
 }
 
@@ -96,8 +100,11 @@ const addRating = (mediaId, requestBody) => (dispatch) => {
   const endPoint = `api/rate/${mediaId}`;
   return axios.post(endPoint, requestBody)
   .then((res) => {
-    return dispatch({ type: TYPE.SET_MEDIA, data: res.data });
+    dispatch({ type: TYPE.SET_MEDIA, data: res.data });
+    const mediaPath = `../media/${mediaId}`;
+    window.location.href = mediaPath;
   })
+  .catch((err) => console.log(err.message));
 }
 
 export {
